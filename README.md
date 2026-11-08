@@ -1,17 +1,17 @@
-# Tiger codes for flash-any.nvim
+# flash-any.nvim 虎码
 
-[简体中文](README.zh-CN.md)
+[English](README.en.md)
 
-Use Tiger codes to search Chinese text and jump with
-[flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main).
+配合 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main)，
+在 Neovim 中输入虎码搜索中文并跳转。
 
-![Search and jump](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
+![搜索跳转](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
 
-[HD MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4)
+[高清 MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4)
 
-## Install
+## 安装
 
-Requires Neovim 0.11+, make and a C compiler. Add this to your lazy.nvim configuration:
+需要 Neovim 0.11+、make 和 C 编译器。在 lazy.nvim 配置中添加：
 
 ```lua
 {
@@ -27,20 +27,20 @@ Requires Neovim 0.11+, make and a C compiler. Add this to your lazy.nvim configu
 }
 ```
 
-## Use
+## 使用
 
-1. Press `s` and enter a character's code.
-2. Choose a displayed label to jump there.
-3. Keep typing to match a longer phrase, mixing codes and ordinary ASCII text.
+1. 按 `s`，输入要找的字的编码。
+2. 按屏幕上显示的标签跳转。
+3. 继续输入可以匹配更长的文本，编码与普通 ASCII 可以混输。
 
-- Type `zhh` to find “虎”.
-- Type `zhhmnm with flash` to find “虎码 with flash”.
-- Type ordinary ASCII directly to search it.
+- 输入 `zhh`，找到“虎”。
+- 输入 `zhhmnm with flash`，找到“虎码 with flash”。
+- 搜索 ASCII 时直接输入原文。
 
-The default optional selection keys are Space for the first candidate and `;` for
-the second. For example, `gch;` matches “羔”; `gch` still matches all candidates.
+默认首选键为空格、次选键为分号，均可省略。例如 `gch;` 可匹配“羔”，
+`gch` 仍可匹配所有候选。
 
-To change the keys, replace `opts` above with:
+若想修改选键，将上面的 `opts` 换成：
 
 ```lua
 opts = {
@@ -50,14 +50,14 @@ opts = {
 }
 ```
 
-Use `{ name = "tiger", selection = false }` to disable selection keys.
-This repository is currently private; GitHub access is required to install it.
+使用 `{ name = "tiger", selection = false }` 可以关闭选键。
+本仓库目前为私有仓库，安装前需要具备 GitHub 访问权限。
 
-## More
+## 更多
 
-- [flash-any configuration](https://github.com/dirichy/flash-any.nvim/blob/main/README.md)
-- [Updating the table and recording demos](docs/maintenance.md)
+- [flash-any 配置说明](https://github.com/dirichy/flash-any.nvim/blob/main/README.zh-CN.md)
+- [更新码表与录制演示](docs/maintenance.md)
 
-## License
+## 许可
 
-Code: [MIT](LICENSE). Table sources and upstream terms: [THIRD_PARTY.md](THIRD_PARTY.md).
+项目代码采用 [MIT](LICENSE)，码表来源与上游条款见 [THIRD_PARTY.md](THIRD_PARTY.md)。
