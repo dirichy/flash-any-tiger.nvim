@@ -37,20 +37,50 @@ Requires Neovim 0.11+, make and a C compiler. Add this to your lazy.nvim configu
 - Type `zhhmnm with flash` to find “虎码 with flash”.
 - Type ordinary ASCII directly to search it.
 
-The default optional selection keys are Space for the first candidate and `;` for
-the second. For example, `gch;` matches “羔”; `gch` still matches all candidates.
+## Configuration
 
-To change the keys, replace `opts` above with:
+`sources = { "tiger" }` works with the defaults. The main setting is optional
+candidate-selection keys:
+
+| Option | Default | Purpose |
+| --- | --- | --- |
+| `selection` | Enabled | `false` disables selectors; a table customizes keys |
+| `selection.keys` | `{ " ", ";" }` | Assign keys to candidates in ranked order |
+| `matcher` | `full_code` | Required with selectors; initial/prefix are available when selectors are disabled |
+
+Space selects the first candidate and semicolon the second; there is no default
+third-candidate key. All candidates still accept bare codes: `gch` matches every
+candidate for that code, while `gch;` matches the second candidate “羔”. Selectors
+preserve typing habits and are never mandatory.
+
+To change or extend the keys, replace opts in the installation example with:
 
 ```lua
 opts = {
   sources = {
-    { name = "tiger", selection = { keys = { " ", ";" } } },
+    { name = "tiger", selection = { keys = { " ", ";", "'" } } },
   },
 }
 ```
 
-Use `{ name = "tiger", selection = false }` to disable selection keys.
+This explicitly adds an apostrophe for the third candidate. The list must be nonempty
+and keys distinct. Each key must be one ASCII punctuation character; only the first
+may be Space. Candidates without assigned keys retain bare-code matching.
+Ranking uses static weights, then original row order, then text; it does not track
+an input method's dynamic frequency.
+
+To disable selectors:
+
+```lua
+opts = { sources = { { name = "tiger", selection = false } } }
+```
+
+Chinese punctuation is already included; type `,`, `.` and similar keys directly.
+Codes without ASCII letters receive no selector. There is no force option,
+separate punctuation list or append_space_below setting.
+
+See [all options](docs/options.en.md) for dictionary overrides, converter, scope,
+fallback and their constraints.
 
 ## More
 

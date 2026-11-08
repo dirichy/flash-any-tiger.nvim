@@ -37,20 +37,43 @@
 - 输入 `zhhmnm with flash`，找到“虎码 with flash”。
 - 搜索 ASCII 时直接输入原文。
 
-默认首选键为空格、次选键为分号，均可省略。例如 `gch;` 可匹配“羔”，
-`gch` 仍可匹配所有候选。
+## 配置
 
-若想修改选键，将上面的 `opts` 换成：
+通常直接使用 `sources = { "tiger" }` 即可，主要配置是可省略的选键：
+
+| 选项 | 默认值 | 用途 |
+| --- | --- | --- |
+| `selection` | 启用 | `false` 关闭选键，表可定制 keys |
+| `selection.keys` | `{ " ", ";" }` | 按权重依次给首选、次选等候选分配按键 |
+| `matcher` | `full_code` | 启用选键时必须是 full_code；关闭选键后可改用 initial/prefix |
+
+默认首选空格、次选分号，没有默认三选键。所有候选仍支持裸码，例如 `gch` 仍可
+匹配同码的所有字，`gch;` 可匹配二选“羔”。选键用于保留输入手感，不强制输入。
+
+修改或追加选键时，将安装示例的 opts 换成：
 
 ```lua
 opts = {
   sources = {
-    { name = "tiger", selection = { keys = { " ", ";" } } },
+    { name = "tiger", selection = { keys = { " ", ";", "'" } } },
   },
 }
 ```
 
-使用 `{ name = "tiger", selection = false }` 可以关闭选键。
+这里单引号是主动追加的三选键。列表必须非空、各键不能重复，每个键只能是一个
+ASCII 标点字符；仅第一个键可为空格。未分配按键的候选保留裸码匹配。
+候选按静态权重排序，同权按码表原始顺序，再按文字排序，不跟随输入法的动态词频。
+
+关闭选键：
+
+```lua
+opts = { sources = { { name = "tiger", selection = false } } }
+```
+
+中文标点已在码表中，直接输入 `,`、`.` 等即可，不需要额外配置；不含 ASCII 字母的
+编码不附加选键。不支持 force、独立 punctuation 列表或 append_space_below。
+
+自定义码表、converter、scope、fallback 等选项及限制见[完整选项](docs/options.md)。
 
 ## 更多
 
