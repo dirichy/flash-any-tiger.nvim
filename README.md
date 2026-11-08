@@ -5,7 +5,9 @@
 Use Tiger codes to search Chinese text and jump with
 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main).
 
-![Search and jump](docs/table.gif)
+![Search and jump](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
+
+[HD MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4)
 
 ## Install
 

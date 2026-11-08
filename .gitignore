@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+# Generated demo media lives in the demos prerelease.
+docs/*.gif
+docs/*.mp4
+docs/*.png

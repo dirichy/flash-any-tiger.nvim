@@ -5,7 +5,9 @@
 配合 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main)，
 在 Neovim 中输入虎码搜索中文并跳转。
 
-![搜索跳转](docs/table.gif)
+![搜索跳转](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
+
+[高清 MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4)
 
 ## 安装
 
