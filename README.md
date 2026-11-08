@@ -51,7 +51,6 @@ opts = {
 ```
 
 使用 `{ name = "tiger", selection = false }` 可以关闭选键。
-本仓库目前为私有仓库，安装前需要具备 GitHub 访问权限。
 
 ## 更多
 

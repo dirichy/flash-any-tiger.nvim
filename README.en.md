@@ -51,7 +51,6 @@ opts = {
 ```
 
 Use `{ name = "tiger", selection = false }` to disable selection keys.
-This repository is currently private; GitHub access is required to install it.
 
 ## More
 
