@@ -71,9 +71,9 @@ opts = { sources = { { name = "tiger", selection = false } } }
 ```
 
 中文标点已在码表中，直接输入 `,`、`.` 等即可，不需要额外配置；不含 ASCII 字母的
-编码不附加选键。不支持 force、独立 punctuation 列表或 append_space_below。
+编码不附加选键。
 
-自定义码表、converter、scope、fallback 等选项及限制见[完整选项](docs/options.md)。
+关闭选键后选择其他匹配方式的示例，见[配置示例](docs/options.md)。
 
 ## 更多
 

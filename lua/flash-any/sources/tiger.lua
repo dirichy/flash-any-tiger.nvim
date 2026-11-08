@@ -60,7 +60,6 @@ return function(opts)
 	end
 	local selectors = selection and require("flash-any.build").selectors(data, assert(ranks), selection) or {}
 	return {
-		scope = "chinese",
 		data = data,
 		matcher = "full_code",
 		prepared = true,

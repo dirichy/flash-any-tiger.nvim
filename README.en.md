@@ -76,11 +76,10 @@ opts = { sources = { { name = "tiger", selection = false } } }
 ```
 
 Chinese punctuation is already included; type `,`, `.` and similar keys directly.
-Codes without ASCII letters receive no selector. There is no force option,
-separate punctuation list or append_space_below setting.
+Codes without ASCII letters receive no selector.
 
-See [all options](docs/options.en.md) for dictionary overrides, converter, scope,
-fallback and their constraints.
+See [configuration examples](docs/options.en.md) for changing the matching mode
+when selectors are disabled.
 
 ## More
 
