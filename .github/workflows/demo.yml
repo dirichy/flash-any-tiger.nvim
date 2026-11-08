@@ -1,19 +1,14 @@
 name: Tiger demo
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 permissions:
   contents: read
 jobs:
   record:
-    # Pin both refs to the same released commit for reproducible recordings.
-    uses: dirichy/flash-any.nvim/.github/workflows/table-demo.yml@d48c5c73162c96c835d17ce6acd4cc059ddaf585
+    uses: dirichy/flash-any.nvim/.github/workflows/table-demo.yml@4f62a24db52f603cc4cfd79691a4a8946b76b9cd
     with:
-      flash-any-ref: d48c5c73162c96c835d17ce6acd4cc059ddaf585
+      flash-any-ref: 4f62a24db52f603cc4cfd79691a4a8946b76b9cd
       table-ref: ${{ github.sha }}
-      file: lua/flash-any/tables/tiger.tsv
-      # format: auto
-      columns: '["text","code","weight","order"]'
-      matcher: full_code
-      # converter: converter.lua
-      text: 虎
-      query: zhh
+      config: demo.lua

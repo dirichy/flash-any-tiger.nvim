@@ -39,10 +39,10 @@ short sample file. Codes come from the table automatically.
 工作流用 `config: demo.lua` 指向配置。可用 `sample` 指定简短样本文件，编码自动从码表推导。
 
 Pin the workflow reference and flash-any-ref to the same tested core commit.
-Run the workflow manually, inspect the uploaded GIF/MP4 and verification report,
+Push to main to record automatically, or run the workflow manually. Inspect the uploaded GIF/MP4 and verification report,
 then copy the chosen GIF to docs/table.gif. The reusable workflow uploads artifacts;
 it does not publish a release or change this repository.
-将工作流引用和 flash-any-ref 固定到同一已测试核心提交。手动录制后检查画面与验证报告，
+将工作流引用和 flash-any-ref 固定到同一已测试核心提交。推送 main 自动录制，也可手动运行。检查画面与验证报告，
 将选用的 GIF 放到 docs/table.gif；可复用工作流只上传 artifact，不自动发布或修改仓库。
 
 For local commands, dependencies, font coverage and playback checks, see the
@@ -51,7 +51,5 @@ For local commands, dependencies, font coverage and playback checks, see the
 
 The currently published recording is [this Actions run](https://github.com/dirichy/flash-any-tiger.nvim/actions/runs/42483049458).
 Download its [HD MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4).
-The Lua-config workflow described above requires a core revision containing that interface;
-the previously published workflow still uses the earlier recording configuration.
-当前已发布演示和高清 MP4 见上述链接。本文的 Lua 配置流程需要包含该接口的核心版本；
-此前已发布的工作流仍使用旧录制配置，尚未随本地文档更新。
+Edit demo.lua to change this package's target text and narration. Every push to main records a fresh artifact; manual dispatch is also available.
+修改 demo.lua 可调整目标文本和旁白。每次推送 main 会录制新的 artifact，也可手动运行。
