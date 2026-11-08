@@ -2,12 +2,14 @@
 
 [简体中文](README.zh-CN.md)
 
-Single-grapheme encodings for search and jump in Neovim with
-[flash-any.nvim](https://github.com/dirichy/flash-any.nvim).
+Use Tiger codes to search Chinese text and jump with
+[flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main).
+
+![Search and jump](docs/table.gif)
 
 ## Install
 
-Requires Neovim 0.11+, plus make and a C toolchain for the initial native build.
+Requires Neovim 0.11+, make and a C compiler. Add this to your lazy.nvim configuration:
 
 ```lua
 {
@@ -23,56 +25,37 @@ Requires Neovim 0.11+, plus make and a C toolchain for the initial native build.
 }
 ```
 
-Press `s`, type the code, then select a label. ASCII literal matching is automatic.
+## Use
 
-## Format
+1. Press `s` and enter a character's code.
+2. Choose a displayed label to jump there.
+3. Keep typing to match a longer phrase, mixing codes and ordinary ASCII text.
 
-UTF-8 TSV columns: grapheme, code, weight, original order. Repeat rows for multiple codes.
-Commas in codes are literal; sorting is unnecessary. Rime/CSV/Fcitx/IBus are also supported.
-Each key must be one complete grapheme. Converted codes must be nonempty ASCII.
+- Type `zhh` to find “虎”.
+- Type `zhhmnm with flash` to find “虎码 with flash”.
+- Type ordinary ASCII directly to search it.
 
-```text
-虎<TAB>zhh<TAB>38896<TAB>1119
-虎<TAB>zh<TAB>256<TAB>14838
-羔<TAB>gch<TAB>1420<TAB>3819
+The default optional selection keys are Space for the first candidate and `;` for
+the second. For example, `gch;` matches “羔”; `gch` still matches all candidates.
+
+To change the keys, replace `opts` above with:
+
+```lua
+opts = {
+  sources = {
+    { name = "tiger", selection = { keys = { " ", ";" } } },
+  },
+}
 ```
 
-## Demo
+Use `{ name = "tiger", selection = false }` to disable selection keys.
+This repository is currently private; GitHub access is required to install it.
 
-![Code-table search and jump](docs/table.gif)
+## More
 
-[HD MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4) · [Verified Actions run](https://github.com/dirichy/flash-any-tiger.nvim/actions/runs/42483049458)
+- [flash-any configuration](https://github.com/dirichy/flash-any.nvim/blob/main/README.md)
+- [Updating the table and recording demos](docs/maintenance.md)
 
-Record against the unchanged project using flash-any's recording tools:
-
-```sh
-# Run in the flash-any.nvim checkout; see its demos/README.md for recording tools.
-TABLE_FILE=/path/to/this-project/lua/flash-any/tables/tiger.tsv sh demos/record.sh table
-```
-
-Run **Actions → Tiger demo → Run workflow** to record again. The checked-in workflow
-uses flash-any's reusable recording workflow pinned to the tested core commit.
-The workflow uploads GIF, MP4, cover and live playback reports as an artifact.
-It does not publish a release.
-
-## Tiger selection keys
-
-The source factory supplies Tiger’s selection and punctuation defaults.
-Space and semicolon are optional first/second candidate keys. Bare codes remain valid
-for every candidate: gch; selects 羔, while gch still accepts all candidates.
-Punctuation is included in the same TSV and receives no selector. Only codes containing
-ASCII letters participate in ranking. Columns are text/code/weight/original order.
-
-## Maintenance
-
-```sh
-python scripts/build.py tiger.dict.yaml lua/flash-any/tables/tiger.tsv
-```
-
-The generator writes only the complete TSV; no common Lua cache or runtime punctuation
-module is needed. Python is a maintainer dependency only. This repository and its demo
-artifacts are private; installing it requires GitHub authentication.
 ## License
 
-Original code uses [MIT](LICENSE). Upstream data and weight notices are in
-[THIRD_PARTY.md](THIRD_PARTY.md).
+Code: [MIT](LICENSE). Table sources and upstream terms: [THIRD_PARTY.md](THIRD_PARTY.md).

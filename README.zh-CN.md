@@ -2,12 +2,14 @@
 
 [English](README.md)
 
-为 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim) 提供单字素编码，
-使用本码表在 Neovim 中搜索跳转。
+配合 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main)，
+在 Neovim 中输入虎码搜索中文并跳转。
+
+![搜索跳转](docs/table.gif)
 
 ## 安装
 
-需要 Neovim 0.11+，首次构建需要 make 和 C 工具链。
+需要 Neovim 0.11+、make 和 C 编译器。在 lazy.nvim 配置中添加：
 
 ```lua
 {
@@ -23,53 +25,37 @@
 }
 ```
 
-按 `s`，输入编码，再按标签跳转。ASCII 字面匹配自动启用。
+## 使用
 
-## 码表格式
+1. 按 `s`，输入要找的字的编码。
+2. 按屏幕上显示的标签跳转。
+3. 继续输入可以匹配更长的文本，编码与普通 ASCII 可以混输。
 
-TSV 四列为字素、编码、权重、原始顺序，以 Tab 分隔；多编码重复写行，逗号原样保留。
-也可直接提供 Rime、CSV、Fcitx 或 IBus 文件。
-每个键须恰好一个完整字素，编码在转换后须为非空 ASCII。
+- 输入 `zhh`，找到“虎”。
+- 输入 `zhhmnm with flash`，找到“虎码 with flash”。
+- 搜索 ASCII 时直接输入原文。
 
-```text
-虎<TAB>zhh<TAB>38896<TAB>1119
-虎<TAB>zh<TAB>256<TAB>14838
-羔<TAB>gch<TAB>1420<TAB>3819
+默认首选键为空格、次选键为分号，均可省略。例如 `gch;` 可匹配“羔”，
+`gch` 仍可匹配所有候选。
+
+若想修改选键，将上面的 `opts` 换成：
+
+```lua
+opts = {
+  sources = {
+    { name = "tiger", selection = { keys = { " ", ";" } } },
+  },
+}
 ```
 
-## 演示
+使用 `{ name = "tiger", selection = false }` 可以关闭选键。
+本仓库目前为私有仓库，安装前需要具备 GitHub 访问权限。
 
-![编码搜索跳转](docs/table.gif)
+## 更多
 
-[高清 MP4](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.mp4) · [已验证的 Actions 运行](https://github.com/dirichy/flash-any-tiger.nvim/actions/runs/42483049458)
-
-无需改码表项目即可用 flash-any 的录制工具：
-
-```sh
-# 在 flash-any.nvim 仓库中执行；录制依赖见其 demos/README.md。
-TABLE_FILE=/path/to/this-project/lua/flash-any/tables/tiger.tsv sh demos/record.sh table
-```
-
-重新录制可在 **Actions → Tiger demo → Run workflow** 中手动触发。工作流复用
-核心仓库录制流程，并固定到本次已测试的核心提交。
-工作流上传 GIF、MP4、封面及回放验证报告，不自动发布 Release。
-
-## 虎码选键
-
-本包工厂负责默认选键和标点规则。
-默认首选空格、次选分号，均可省略；未分配选键的候选仍支持裸码。
-例如 `gch;` 可以匹配二选“羔”；`gch` 仍支持所有候选。
-标点已在同一份 TSV 中，不会获得选键。纯标点编码不参与候选排名。
-
-## 维护
-
-```sh
-python scripts/build.py tiger.dict.yaml lua/flash-any/tables/tiger.tsv
-```
-
-只生成完整 TSV，没有常用字 Lua 缓存或运行时标点模块。Python 仅为维护者依赖。
-本仓库为 private，安装需要 GitHub 认证；demo artifact 同样只对有权限的用户开放。
+- [flash-any 配置说明](https://github.com/dirichy/flash-any.nvim/blob/main/README.zh-CN.md)
+- [更新码表与录制演示](docs/maintenance.md)
 
 ## 许可
 
-项目代码采用 [MIT](LICENSE)，码表来源和权重信息见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+项目代码采用 [MIT](LICENSE)，码表来源与上游条款见 [THIRD_PARTY.md](THIRD_PARTY.md)。
