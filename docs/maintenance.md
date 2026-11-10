@@ -6,10 +6,12 @@ editing its dictionary or recording a demo.
 
 ## Dictionary / 码表
 
-Tiger TSV columns are grapheme, code, weight and original order, separated by Tabs.
+Tiger TSV columns are grapheme, code and optional weight, separated by Tabs.
+Rows retain original dictionary order; punctuation omits weight.
 Repeat rows for multiple codes; commas in codes are literal. Other formats, column order, converters,
 and optional weights are documented in [source configuration](https://github.com/dirichy/flash-any.nvim/blob/main/docs/sources.md).
-虎码 TSV 四列为字素、编码、权重、原始顺序，以 Tab 分隔；多编码重复写行，逗号原样保留。
+虎码 TSV 为字素、编码、可选权重三列，以 Tab 分隔；直接保留原行序，标点省略权重。
+多编码重复写行，逗号原样保留。
 其他文件格式、列顺序、编码转换及可选权重见上述 source 文档。
 
 Record the upstream source and license in THIRD_PARTY.md when updating the dictionary.

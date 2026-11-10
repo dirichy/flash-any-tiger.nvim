@@ -64,8 +64,7 @@ opts = {
 ```
 
 This explicitly adds an apostrophe for the third candidate. The list must be nonempty
-and keys distinct. Each key must be one ASCII punctuation character; only the first
-may be Space. Candidates without assigned keys retain bare-code matching.
+and keys distinct. Each key must be a nonempty ASCII string of 1–127 bytes. Candidates without assigned keys retain bare-code matching.
 Ranking uses static weights, then original row order, then text; it does not track
 an input method's dynamic frequency.
 
@@ -76,7 +75,7 @@ opts = { sources = { { name = "tiger", selection = false } } }
 ```
 
 Chinese punctuation is already included; type `,`, `.` and similar keys directly.
-Codes without ASCII letters receive no selector.
+Punctuation rows omit weights, so they do not participate in ranking or receive selectors.
 
 See [configuration examples](docs/options.en.md) for changing the matching mode
 when selectors are disabled.

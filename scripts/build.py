@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build sorted Tiger text/code/weight/original-order TSV from a Rime dictionary."""
+"""Build Tiger text/code/weight TSV preserving Rime dictionary row order."""
 from __future__ import annotations
 import argparse
 import re
@@ -62,11 +62,16 @@ def main():
         if code not in candidates or weight > candidates[code][0]:
             candidates[code] = (weight, order)
     for text, codes in PUNCTUATION.items():
-        rows[text] = {code: (0, 0) for code in codes}
+        rows[text] = {code: (None, None) for code in codes}
+    entries = [(order, text, code, weight) for text, codes in rows.items()
+               for code, (weight, order) in codes.items() if weight is not None]
+    entries.sort(key=lambda row: row[0])
     with args.output.open("w", encoding="utf-8") as output:
-        for text in sorted(rows, key=lambda value: value.encode("utf-8")):
-            for code, (weight, order) in sorted(rows[text].items()):
-                output.write(f"{text}\t{code}\t{weight}\t{order}\n")
+        for _, text, code, weight in entries:
+            output.write(f"{text}\t{code}\t{weight}\n")
+        for text, codes in PUNCTUATION.items():
+            for code in codes:
+                output.write(f"{text}\t{code}\n")
     print(f"wrote {len(rows)} characters")
 
 
