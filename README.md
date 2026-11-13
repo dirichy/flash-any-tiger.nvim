@@ -4,6 +4,7 @@
 
 配合 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main)，
 在 Neovim 中输入虎码搜索中文并跳转。
+本项目主要为虎码打单用户提供，打词用户可以看 [flash-any-tigress.nvim](https://github.com/dirichy/flash-any-tigress.nvim/tree/main)，
 
 ![搜索跳转](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
 

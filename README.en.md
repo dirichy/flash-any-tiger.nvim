@@ -4,6 +4,8 @@
 
 Use Tiger codes to search Chinese text and jump with
 [flash-any.nvim](https://github.com/dirichy/flash-any.nvim/tree/main).
+This project is primarily intended for Tiger users who type individual characters.
+If you type words or phrases, see [flash-any-tigress.nvim](https://github.com/dirichy/flash-any-tigress.nvim/tree/main).
 
 ![Search and jump](https://github.com/dirichy/flash-any-tiger.nvim/releases/download/demos/table.gif)
 
